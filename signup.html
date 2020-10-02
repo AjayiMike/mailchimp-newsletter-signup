@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>techruise newletter</title>
+        <link rel="stylesheet" href="signupStyle.css">
+    </head>
+    <body>
+        <div class="main">
+            <div class="form-container">
+                <h1>signup for techruise newsletter</h1>
+                <form action="/" onsubmit="return validate()" method="POST" novalidate>
+        
+                    
+                    <fieldset>
+                        <legend>fist name</legend>
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" id="firstName" autocomplete="off">
+                    </fieldset>
+                    
+        
+                    <fieldset>
+                        <legend>last name</legend>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="lastName" id="lastName" autocomplete="off">
+                    </fieldset>
+        
+                    <fieldset>
+                        <legend>email</legend>
+                        <label for="email">email</label>
+                        <input type="email" name="email" id="email" autocomplete="off">
+                    </fieldset>
+        
+                    <fieldset>
+                        <legend>phone number</legend>
+                        <label for="phoneNumber">phone number</label>
+                        <input type="text" name="phoneNumber" id="phoneNumber" autocomplete="off">
+                    </fieldset>
+        
+                    <button type="submit">signup</button>
+                </form>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Built with love by Dev. Adek</p>
+        </footer>
+
+        <script>
+            const validate = () => {
+                const firstName = document.querySelector("#firstName");
+                const lastName = document.querySelector("#lastName");
+                const email = document.querySelector("#email");
+                const phoneNumber = document.querySelector("#phoneNumber");
+
+            //     if(firstName.value.length < 3) {
+            //         firstName.parentElement.style.borderColor = "red";
+            //         console.log("first name too short");
+            //         return false
+            //     }
+            //     if(lastName.value.length < 3) {
+            //         lastName.parentElement.style.borderColor = "red";
+            //         console.log("last name too short");
+            //         return false;
+            //     }
+            //     if(email.value.length < 6) {
+            //         email.parentElement.style.borderColor = "red";
+            //         console.log("email too short");
+            //         return false;
+            //     }
+            //     if(phoneNumber.value.length < 10) {
+            //         phoneNumber.parentElement.style.borderColor = "red";
+            //         console.log("invalid phone number");
+            //         return false;
+            //     }
+
+            //     return true;               
+            // }
+                let flag = false
+                let violatorList = [];
+                const emailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if(firstName.value.length > 2) {
+                    flag = true
+                } else {
+                    violatorList.push(firstName)
+                    flag = false
+                }
+                if(lastName.value.length > 2) {
+                    flag = flag && true;
+                } else {
+                    violatorList.push(lastName)
+                    flag = false
+                }
+                if(emailRegexp.test(email.value)) {
+                    flag = flag && true;
+                } else {
+                    violatorList.push(email)
+                    flag = false
+                }
+                if(phoneNumber.value.length > 10 && phoneNumber.value.length < 16) {
+                    flag = flag && true
+                } else {
+                    violatorList.push(phoneNumber)
+                    flag = false
+                }
+
+                if(violatorList) {
+                    violatorList.forEach(element => {
+                        element.parentElement.style.borderColor = "red";
+                    })
+                }
+                return flag              
+            }
+        </script>
+    </body>
+</html>

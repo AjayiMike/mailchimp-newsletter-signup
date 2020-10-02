@@ -1,0 +1,5 @@
+#node modules
+node_modules
+
+# file containing API key and list id
+/private.js
